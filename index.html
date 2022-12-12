@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.86/dist/themes/light.css" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Svelte</title>
+    <style>
+      body {
+        padding: 2rem;
+        font-family: sans-serif;
+      }
+
+      .faux-pt-container {
+        max-width: 1170px;
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        height: 75vh;
+        grid-template-columns: 250px 1fr;
+        gap: 1rem;
+      }
+
+      .faux-pt-sidebar {
+        background: #666;
+        border: 1px solid #000;
+        border-radius: 4px;
+      }
+
+      .faux-pt-main {
+        background: #ddd;
+        border: 1px solid #000;
+        border-radius: 4px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <hathi-website-header></hathi-website-header>
+    <p class="message">An Experiment</p>
+
+
+    <hathi-website-header search_state="toggle"></hathi-website-header>
+
+    <div class="faux-pt-container">
+      <div class="faux-pt-sidebar"></div>
+      <div class="faux-pt-main"></div>
+    </div>
+
+    <script type="module" src="/src/main.js" data-shoelace="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.85/dist"></script>
+  </body>
+</html>
