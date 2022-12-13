@@ -19,7 +19,6 @@
   function _updateSearchType() {
     let value = _searchtype.value;
     _root.dataset.field = value;
-    // let menuItem = _searchtype.querySelector(`sl-menu-item[value="${value}"]`);
     let menuItem = _searchtype.querySelector(`sl-menu-item[aria-checked="true"]`);
     window._s1 = _searchtype;
     console.log("-- updateSearchType", value, _searchtype, menuItem);
@@ -32,18 +31,6 @@
   if ( window.HT && window.HT.service_domain ) {
     SERVICE_DOMAIN = window.HT.service_domain;
     CATALOG_DOMAIN = window.HT.catalog_domain;
-  }
-
-  let searchParams = new URLSearchParams(location.search);
-
-  // seed from the URL
-  if ( searchParams.has('lookfor') ) {
-    _input.value = searchParams.get('lookfor');
-    let searchtype = searchParams.get('searchtype')  || 'all';
-    _searchtype.value = searchtype;
-  } else if ( searchParams.has('q1') ) {
-    _input.value = searchParams.get('q1');
-    _searchtype.value = 'everything';
   }
 
   let _updateSelect = function(event) {
@@ -78,9 +65,24 @@
     }
   }
 
+  function _updateSearchForm() {
+    let searchParams = new URLSearchParams(location.search);
+
+    // seed from the URL
+    if ( searchParams.has('lookfor') ) {
+      _input.value = searchParams.get('lookfor');
+      let searchtype = searchParams.get('searchtype')  || 'all';
+      _searchtype.value = searchtype;
+    } else if ( searchParams.has('q1') ) {
+      _input.value = searchParams.get('q1');
+      _searchtype.value = 'everything';
+    }
+  }
+
   onMount(() => {
     // take it off the main thread so the sl-selects build themselves
     setTimeout(() => {
+      _updateSearchForm();
       _updateSearchType();
     }, 0);
   })
@@ -107,12 +109,6 @@
     max-width: 1170px;
     margin: 1rem auto;
     overflow: hidden;
-    max-height: 0px;
-    transition:max-height 0.3s ease-out;
-  }
-
-  .search-form.expanded {
-    max-height: 6rem;
   }
 
   .search-form > form {
@@ -203,10 +199,6 @@
     align-items: center;
     text-decoration: none;
   }
-
-  /* .search-form[data-view="full"] *[data-index-view="full"] {
-    display: block;
-  } */
 
   span.hint {
     color: #888;

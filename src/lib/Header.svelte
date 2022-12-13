@@ -3,7 +3,7 @@
 <script>
   import { onMount } from 'svelte';
   import { slide, blur, fade, fly } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
+	import { quintOut, expoIn, expoOut, sineIn, sineOut } from 'svelte/easing';
 
   import logo from '../assets/phire-htdl-v12.png';
 
@@ -19,6 +19,8 @@
 
   import '@shoelace-style/shoelace/dist/components/resize-observer/resize-observer.js';
   import '@shoelace-style/shoelace/dist/components/animation/animation.js';
+
+  import menuData from '../assets/menuData.json';
 
   let assetPath = '';
   if ( window.HT ) {
@@ -43,36 +45,6 @@
   function toggleSearch() {
     searchFormDisplayed = ! searchFormDisplayed;
   }
-
-  // this data might be fetched
-  export let menuData = {};
-  menuData['about'] = [
-    'Our Mission',
-    'HathiTrust Research Center',
-    'HathiTrust by the Numbers',
-    'Our Team',
-    'Careers',
-  ];
-  menuData['collection'] = [
-    'About the Collection',
-    'How to Search & Access',
-    'How to Contribute Content',
-    'Preservation',
-    'Terms & Conditions',
-  ]
-  menuData['memberLibraries'] = [
-    'Member List',
-    'Services',
-    'Collaborations',
-    'Governance & Groups',
-    'Member Groups'
-  ]
-
-  menuData['newsEvents'] = [
-    'Perspectives',
-    'Newsletters',
-    'Events & Webinars'
-  ]
 
   let resizeObserver;
 
@@ -277,7 +249,12 @@
 {:else if search_state == 'toggle'}
   <!-- transition:blur|local="{{ amount: 10 }}"-->
   <!-- transition:slide="{{delay: 50, duration: 300, easing: quintOut }}" -->
-  <div out:slide>
+  <!-- <div out:slide>
     <hathi-search-form data-wtf={typeof(searchFormDisplayed)} display={searchFormDisplayed}></hathi-search-form>
-  </div>
+  </div> -->
+  {#if searchFormDisplayed}
+    <div out:slide="{{ easing: sineOut, duration: 150 }}" in:slide="{{ easing: sineIn, duration: 150 }}">
+      <hathi-search-form></hathi-search-form>
+    </div>
+  {/if}
 {/if}
