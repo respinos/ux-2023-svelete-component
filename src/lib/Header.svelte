@@ -20,7 +20,12 @@
   import '@shoelace-style/shoelace/dist/components/resize-observer/resize-observer.js';
   import '@shoelace-style/shoelace/dist/components/animation/animation.js';
 
-  // import Alert from './fragments/Alert.svelte.fragment';
+  let assetPath = '';
+  if ( window.HT ) {
+    assetPath = new URL(document.querySelector('script[data-shoelace]').src);
+    assetPath.pathname = '';
+    assetPath = assetPath.toString();
+  }
 
   let containerWidth = 2000;
   export let search_state = 'default';
@@ -92,7 +97,7 @@
 
     header {
       max-width: 1170px;
-      margin: 0 auto;
+      margin: 1rem auto;
     }
 
     .menu {
@@ -179,7 +184,7 @@
   <header>
     <div class="menu">
       <a href="https://www.hathitrust.org" aria-label="Home">
-        <img class="logo" alt="HathiTrust Digital Library" src={logo} />
+        <img class="logo" alt="HathiTrust Digital Library" src={assetPath + logo} />
       </a>
       {#if containerWidth == 0}
         <div><sl-icon name="smartwatch"></sl-icon></div>

@@ -112,7 +112,7 @@
   }
 
   .search-form.expanded {
-    max-height: 9.5rem;
+    max-height: 6rem;
   }
 
   .search-form > form {
@@ -181,11 +181,18 @@
 
   .search-links {
     display: flex;
-    justify-content: flex-end;
-    align-content: flex-end;
-    margin-top: 1rem;
+    justify-content: space-between;
     gap: 1.5rem;
-    width: 100%;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .search-links > div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .search-links a {
@@ -194,6 +201,7 @@
     flex-direction: row;
     gap: 0.25rem;
     align-items: center;
+    text-decoration: none;
   }
 
   /* .search-form[data-view="full"] *[data-index-view="full"] {
@@ -239,13 +247,15 @@
       You're searching the information website.
     </span>
     {/if}
-    <a href="#">
-      <sl-icon name="question-circle"></sl-icon>
-      Search Help
-    </a>
-    <a href="/Search/Advanced">
-      <sl-icon name="search"></sl-icon>
-      Advanced Collection Search
-    </a>
+    <div>
+      <a href="#">
+        <sl-icon name="question-circle"></sl-icon>
+        Search Help
+      </a>
+      <a href="/Search/Advanced">
+        <sl-icon name="search"></sl-icon>
+        Advanced Collection Search
+      </a>
+    </div>
   </div>
 </div>
