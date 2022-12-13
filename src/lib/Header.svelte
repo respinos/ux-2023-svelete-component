@@ -5,7 +5,7 @@
   import { slide, blur, fade, fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-  import logo from '../assets/phire-htdl.png';
+  import logo from '../assets/phire-htdl-v12.png';
 
   import '@shoelace-style/shoelace/dist/components/button/button.js';
   import '@shoelace-style/shoelace/dist/components/alert/alert.js';
